@@ -9,6 +9,7 @@ const routes = require("./routes");
 const authRoutes = require("./routes/auth.routes");
 const productRoutes = require("./routes/product.routes");
 const categoryRoutes = require("./routes/category.routes");
+const cartRoutes = require("./routes/cart.routes");
 require("dotenv").config();
 
 const app = express();
@@ -49,6 +50,7 @@ app.use("/api", routes);
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/category", categoryRoutes);
+app.use("/api/cart", cartRoutes);
 
 // 404 handler
 app.use((req, res) => {
