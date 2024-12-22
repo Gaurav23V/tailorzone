@@ -116,3 +116,5 @@
 {"level":"info","message":"POST /api/auth/verify-email/de435a5f85f977c8b09f2405e109ea11b61b68b638046aa47132f6a424cda2a6","service":"ecommerce-api","timestamp":"2024-12-22 18:09:13"}
 {"level":"info","message":"Server running on port 5000","service":"ecommerce-api","timestamp":"2024-12-22 18:09:47"}
 {"level":"info","message":"POST /api/auth/verify-email/de435a5f85f977c8b09f2405e109ea11b61b68b638046aa47132f6a424cda2a6","service":"ecommerce-api","timestamp":"2024-12-22 18:10:10"}
+{"level":"info","message":"POST /api/auth/login","service":"ecommerce-api","timestamp":"2024-12-22 18:18:26"}
+{"level":"info","message":"POST /api/auth/login","service":"ecommerce-api","timestamp":"2024-12-22 18:21:57"}

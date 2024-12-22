@@ -1,35 +1,71 @@
-'use client'
-
-import { useState, useEffect, useRef } from 'react'
-import Link from 'next/link'
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { Search, Menu, X, User, ShoppingBag } from 'lucide-react'
+'use client';
+import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Search, Menu, X, User, ShoppingBag } from 'lucide-react';
+import { useAuth } from '@/context/AuthContext';
 
 export default function Navbar() {
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const searchRef = useRef<HTMLDivElement>(null)
-  const cartItemCount = 0 // Replace with actual cart count
+  const router = useRouter();
+  const { isAuthenticated, logout } = useAuth();
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
+  const userMenuRef = useRef<HTMLDivElement>(null);
+  const cartItemCount = 0; // Replace with actual cart count
 
-  // Handle click outside search bar
+  // Handle click outside search bar and user menu
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
-        setIsSearchOpen(false)
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target as Node)
+      ) {
+        setIsSearchOpen(false);
+      }
+      if (
+        userMenuRef.current &&
+        !userMenuRef.current.contains(event.target as Node)
+      ) {
+        setIsUserMenuOpen(false);
       }
     }
 
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [])
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleUserIconClick = () => {
+    if (isAuthenticated) {
+      setIsUserMenuOpen(!isUserMenuOpen);
+    } else {
+      router.push('/login');
+    }
+  };
+
+  const handleCartClick = () => {
+    if (isAuthenticated) {
+      router.push('/cart');
+    } else {
+      router.push('/login');
+    }
+  };
+
+  const handleLogout = async () => {
+    await logout();
+    setIsUserMenuOpen(false);
+    router.push('/login');
+  };
 
   const navLinks = [
     { href: '/products', label: 'PRODUCTS' },
     { href: '/categories', label: 'COLLECTION' },
     { href: '/about', label: 'ABOUT' },
     { href: '/contact', label: 'CONTACT' },
-  ]
+  ];
 
   return (
     <nav className="border-b border-gray-200">
@@ -59,9 +95,11 @@ export default function Navbar() {
           <div className="flex items-center space-x-6">
             {/* Search Bar */}
             <div ref={searchRef} className="relative">
-              <div className={`flex items-center transition-all duration-300 ${
-                isSearchOpen ? 'w-64' : 'w-8'
-              }`}>
+              <div
+                className={`flex items-center transition-all duration-300 ${
+                  isSearchOpen ? 'w-64' : 'w-8'
+                }`}
+              >
                 {isSearchOpen ? (
                   <Input
                     type="search"
@@ -84,13 +122,51 @@ export default function Navbar() {
             </div>
 
             {/* User Account */}
-            <Button variant="ghost" size="icon" className="hover:bg-transparent">
-              <User className="h-5 w-5" />
-              <span className="sr-only">Account</span>
-            </Button>
+            <div ref={userMenuRef} className="relative">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="hover:bg-transparent"
+                onClick={handleUserIconClick}
+              >
+                <User className="h-5 w-5" />
+                <span className="sr-only">Account</span>
+              </Button>
+
+              {/* User Menu Dropdown */}
+              {isUserMenuOpen && isAuthenticated && (
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+                  <Link
+                    href="/profile"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    onClick={() => setIsUserMenuOpen(false)}
+                  >
+                    Profile
+                  </Link>
+                  <Link
+                    href="/orders"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    onClick={() => setIsUserMenuOpen(false)}
+                  >
+                    Orders
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
 
             {/* Shopping Cart */}
-            <Button variant="ghost" size="icon" className="hover:bg-transparent relative">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="hover:bg-transparent relative"
+              onClick={handleCartClick}
+            >
               <ShoppingBag className="h-5 w-5" />
               {cartItemCount > 0 && (
                 <span className="absolute -top-1 -right-1 h-4 w-4 text-xs bg-rose-500 text-white rounded-full flex items-center justify-center">
@@ -140,6 +216,5 @@ export default function Navbar() {
         </div>
       </div>
     </nav>
-  )
+  );
 }
-
