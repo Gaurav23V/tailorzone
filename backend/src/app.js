@@ -8,6 +8,7 @@ const rateLimit = require("express-rate-limit");
 const routes = require("./routes");
 const authRoutes = require("./routes/auth.routes");
 const productRoutes = require("./routes/product.routes");
+const categoryRoutes = require("./routes/category.routes");
 require("dotenv").config();
 
 const app = express();
@@ -47,6 +48,7 @@ app.use((req, res, next) => {
 app.use("/api", routes);
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/category", categoryRoutes);
 
 // 404 handler
 app.use((req, res) => {

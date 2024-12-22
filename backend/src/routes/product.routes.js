@@ -1,12 +1,33 @@
 const express = require("express");
 const router = express.Router();
+const productController = require("../controllers/product.controller");
+const {
+  authMiddleware,
+  adminMiddleware,
+} = require("../middleware/auth.middleware");
 
-router.get("/", (req, res) => {
-  res.status(501).json({ message: "Not implemented yet" });
-});
+// Public routes
+router.get("/", productController.getProducts);
+router.get("/:id", productController.getProduct);
 
-router.get("/:id", (req, res) => {
-  res.status(501).json({ message: "Not implemented yet" });
-});
+// Admin routes
+router.post(
+  "/",
+  authMiddleware,
+  adminMiddleware,
+  productController.createProduct
+);
+router.put(
+  "/:id",
+  authMiddleware,
+  adminMiddleware,
+  productController.updateProduct
+);
+router.delete(
+  "/:id",
+  authMiddleware,
+  adminMiddleware,
+  productController.deleteProduct
+);
 
 module.exports = router;
