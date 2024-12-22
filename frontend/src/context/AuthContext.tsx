@@ -10,7 +10,17 @@ import {
 interface User {
   id: string;
   email: string;
-  name: string;
+  firstName: string;
+  lastName: string;
+  phone?: string;
+  addresses?: {
+    street: string;
+    city: string;
+    state: string;
+    postalCode: string;
+    country: string;
+    isDefault: boolean;
+  }[];
 }
 
 interface AuthContextType {

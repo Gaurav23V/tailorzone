@@ -278,6 +278,137 @@ const authController = {
       next(error);
     }
   },
+
+  // Get user profile
+  async getProfile(req, res, next) {
+    try {
+      const user = await User.findById(req.user._id).select(
+        "-password -refreshToken"
+      );
+      res.json(user);
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  // Update user profile
+  async updateProfile(req, res, next) {
+    try {
+      const { firstName, lastName, phone } = req.body;
+
+      // Create update object with only provided fields
+      const updateData = {};
+      if (firstName) updateData.firstName = firstName;
+      if (lastName) updateData.lastName = lastName;
+      if (phone) updateData.phone = phone;
+
+      const user = await User.findByIdAndUpdate(
+        req.user._id,
+        { $set: updateData },
+        { new: true, runValidators: true }
+      ).select("-password -refreshToken");
+
+      res.json(user);
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  // Add new address
+  async addAddress(req, res, next) {
+    try {
+      const { street, city, state, postalCode, country, isDefault } = req.body;
+
+      const user = await User.findById(req.user._id);
+
+      // If this is the default address, unset other default addresses
+      if (isDefault) {
+        user.addresses.forEach((addr) => (addr.isDefault = false));
+      }
+
+      // Add new address
+      user.addresses.push({
+        street,
+        city,
+        state,
+        postalCode,
+        country,
+        isDefault: isDefault || user.addresses.length === 0, // Make first address default
+      });
+
+      await user.save();
+      res.json(user.addresses);
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  // Update address
+  async updateAddress(req, res, next) {
+    try {
+      const { addressId } = req.params;
+      const { street, city, state, postalCode, country, isDefault } = req.body;
+
+      const user = await User.findById(req.user._id);
+
+      // Find address index
+      const addressIndex = user.addresses.findIndex(
+        (addr) => addr._id.toString() === addressId
+      );
+
+      if (addressIndex === -1) {
+        throw new AppError("Address not found", 404);
+      }
+
+      // If setting as default, unset other defaults
+      if (isDefault) {
+        user.addresses.forEach((addr) => (addr.isDefault = false));
+      }
+
+      // Update address
+      user.addresses[addressIndex] = {
+        ...user.addresses[addressIndex],
+        street: street || user.addresses[addressIndex].street,
+        city: city || user.addresses[addressIndex].city,
+        state: state || user.addresses[addressIndex].state,
+        postalCode: postalCode || user.addresses[addressIndex].postalCode,
+        country: country || user.addresses[addressIndex].country,
+        isDefault: isDefault || user.addresses[addressIndex].isDefault,
+      };
+
+      await user.save();
+      res.json(user.addresses);
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  // Delete address
+  async deleteAddress(req, res, next) {
+    try {
+      const { addressId } = req.params;
+
+      const user = await User.findById(req.user._id);
+
+      // Remove address
+      user.addresses = user.addresses.filter(
+        (addr) => addr._id.toString() !== addressId
+      );
+
+      // If deleted address was default and addresses remain, make first address default
+      if (
+        user.addresses.length > 0 &&
+        !user.addresses.some((addr) => addr.isDefault)
+      ) {
+        user.addresses[0].isDefault = true;
+      }
+
+      await user.save();
+      res.json(user.addresses);
+    } catch (error) {
+      next(error);
+    }
+  },
 };
 
 module.exports = authController;

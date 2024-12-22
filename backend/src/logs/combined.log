@@ -118,3 +118,21 @@
 {"level":"info","message":"POST /api/auth/verify-email/de435a5f85f977c8b09f2405e109ea11b61b68b638046aa47132f6a424cda2a6","service":"ecommerce-api","timestamp":"2024-12-22 18:10:10"}
 {"level":"info","message":"POST /api/auth/login","service":"ecommerce-api","timestamp":"2024-12-22 18:18:26"}
 {"level":"info","message":"POST /api/auth/login","service":"ecommerce-api","timestamp":"2024-12-22 18:21:57"}
+{"level":"info","message":"Server running on port 5000","service":"ecommerce-api","timestamp":"2024-12-22 19:37:28"}
+{"level":"info","message":"Server running on port 5000","service":"ecommerce-api","timestamp":"2024-12-22 19:53:58"}
+{"level":"info","message":"GET /api/auth/profile","service":"ecommerce-api","timestamp":"2024-12-22 20:03:48"}
+{"level":"info","message":"GET /api/profile","service":"ecommerce-api","timestamp":"2024-12-22 20:04:13"}
+{"level":"info","message":"GET /api/auth/profile","service":"ecommerce-api","timestamp":"2024-12-22 20:05:28"}
+{"level":"info","message":"GET /api/auth/profile","service":"ecommerce-api","timestamp":"2024-12-22 20:06:17"}
+{"level":"info","message":"GET /api/auth/profile","service":"ecommerce-api","timestamp":"2024-12-22 20:06:27"}
+{"level":"info","message":"POST /api/auth/login","service":"ecommerce-api","timestamp":"2024-12-22 20:06:53"}
+{"level":"info","message":"GET /api/auth/profile","service":"ecommerce-api","timestamp":"2024-12-22 20:07:02"}
+{"level":"info","message":"GET /api/auth/profile","service":"ecommerce-api","timestamp":"2024-12-22 20:07:02"}
+{"level":"info","message":"POST /api/auth/profile/address","service":"ecommerce-api","timestamp":"2024-12-22 20:07:29"}
+{"level":"info","message":"GET /api/auth/profile","service":"ecommerce-api","timestamp":"2024-12-22 20:08:43"}
+{"level":"info","message":"GET /api/auth/profile","service":"ecommerce-api","timestamp":"2024-12-22 20:10:19"}
+{"level":"info","message":"DELETE /api/auth/profile/address/67687181854546681b6239c0","service":"ecommerce-api","timestamp":"2024-12-22 20:10:24"}
+{"level":"info","message":"POST /api/auth/profile/address","service":"ecommerce-api","timestamp":"2024-12-22 20:10:33"}
+{"level":"info","message":"PUT /api/auth/profile/address/67687239854546681b6239d1","service":"ecommerce-api","timestamp":"2024-12-22 20:10:43"}
+{"level":"info","message":"PUT /api/auth/profile","service":"ecommerce-api","timestamp":"2024-12-22 20:11:02"}
+{"level":"info","message":"GET /api/auth/profile","service":"ecommerce-api","timestamp":"2024-12-22 20:11:05"}
