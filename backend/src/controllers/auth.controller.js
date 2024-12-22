@@ -189,28 +189,44 @@ const authController = {
   async requestPasswordReset(req, res, next) {
     try {
       const { email } = req.body;
-      const user = await User.findOne({ email });
+      console.log(`Password reset requested for email: ${email}`);
 
+      const user = await User.findOne({ email });
       if (!user) {
-        // Return success even if user doesn't exist (security)
+        console.log(`No user found with email: ${email}`);
         return res.json({
           message:
             "If your email is registered, you will receive a password reset link",
         });
       }
 
-      const resetToken = generateResetToken();
-      user.passwordResetToken = resetToken;
-      user.passwordResetExpires = Date.now() + 3600000; // 1 hour
-      await user.save();
+      // Generate reset token
+      const resetToken = generateResetToken(); // This should be a crypto-secure token
+      console.log(`Generated reset token for email: ${email}`);
 
-      // TODO: Implement email service to send reset token
+      const hashedToken = await hashPassword(resetToken); // Hash the token before saving
+      console.log(`Hashed reset token for email: ${email}`);
+
+      // Save hashed token and expiry
+      user.passwordResetToken = hashedToken;
+      user.passwordResetExpires = Date.now() + 3600000; // 1 hour from now
+      await user.save();
+      console.log(`Saved reset token and expiry for email: ${email}`);
+
+      // Send password reset email
+      await emailService.sendPasswordResetEmail(
+        user.email,
+        resetToken,
+        user.firstName
+      );
+      console.log(`Sent password reset email to: ${email}`);
 
       res.json({
         message:
-          "If you email is registered, you will receive a password reset link",
+          "If your email is registered, you will receive a password reset link",
       });
     } catch (error) {
+      console.error(`Error in requestPasswordReset: ${error.message}`);
       next(error);
     }
   },
@@ -219,21 +235,45 @@ const authController = {
   async resetPassword(req, res, next) {
     try {
       const { token } = req.params;
-      const password = req.body;
+      const { password } = req.body;
 
+      if (!password) {
+        throw new AppError("Password is required", 400);
+      }
+
+      // Find user with non-expired reset token
       const user = await User.findOne({
-        passwordResetToken: token,
         passwordResetExpires: { $gt: Date.now() },
       });
 
       if (!user) {
-        throw new AppError("Invalid or expired reset token");
+        throw new AppError("Invalid or expired reset token", 400);
       }
 
-      user.password = password;
+      // Verify the token
+      const isValidToken = await comparePassword(
+        token,
+        user.passwordResetToken
+      );
+      if (!isValidToken) {
+        throw new AppError("Invalid or expired reset token", 400);
+      }
+
+      // Update password
+      user.password = password; // Password will be hashed by pre-save middleware
       user.passwordResetToken = undefined;
       user.passwordResetExpires = undefined;
       await user.save();
+
+      // Send password change confirmation email
+      await emailService.sendPasswordChangeConfirmation(
+        user.email,
+        user.firstName
+      );
+
+      res.json({
+        message: "Password has been reset successfully",
+      });
     } catch (error) {
       next(error);
     }

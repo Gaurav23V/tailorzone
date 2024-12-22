@@ -8,7 +8,7 @@ router.post("/login", authController.login);
 router.post("/refresh", authController.refreshToken);
 router.post("/password-reset", authController.requestPasswordReset);
 router.post("/password-reset/:token", authController.resetPassword);
-router.get("/verify-email/:token", authController.verifyEmail);
+router.post("/verify-email/:token", authController.verifyEmail);
 router.post("/resend-verification", authController.resendVerificationEmail);
 
 module.exports = router;

@@ -10,7 +10,7 @@ const comparePassword = async (password, hash) => {
   return bcrypt.compare(password, hash);
 };
 
-const generateResetToken = async () => {
+const generateResetToken = () => {
   return crypto.randomBytes(32).toString("hex");
 };
 

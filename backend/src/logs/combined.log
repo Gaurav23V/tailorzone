@@ -64,3 +64,55 @@
 {"level":"info","message":"POST /api/auth/resend-verification","service":"ecommerce-api","timestamp":"2024-12-22 00:42:13"}
 {"level":"info","message":"Server running on port 5000","service":"ecommerce-api","timestamp":"2024-12-22 21:22:30"}
 {"level":"info","message":"POST /api/auth/login","service":"ecommerce-api","timestamp":"2024-12-22 21:24:15"}
+{"level":"info","message":"Server running on port 5000","service":"ecommerce-api","timestamp":"2024-12-22 16:18:29"}
+{"level":"info","message":"Server running on port 5000","service":"ecommerce-api","timestamp":"2024-12-22 16:21:16"}
+{"level":"info","message":"GET /","service":"ecommerce-api","timestamp":"2024-12-22 16:21:20"}
+{"level":"info","message":"GET /favicon.ico","service":"ecommerce-api","timestamp":"2024-12-22 16:21:20"}
+{"level":"info","message":"Server running on port 5000","service":"ecommerce-api","timestamp":"2024-12-22 16:22:37"}
+{"level":"info","message":"Server running on port 5000","service":"ecommerce-api","timestamp":"2024-12-22 16:22:40"}
+{"level":"info","message":"Server running on port 5000","service":"ecommerce-api","timestamp":"2024-12-22 16:23:38"}
+{"level":"info","message":"GET /","service":"ecommerce-api","timestamp":"2024-12-22 16:24:19"}
+{"level":"info","message":"GET /login","service":"ecommerce-api","timestamp":"2024-12-22 16:24:24"}
+{"level":"info","message":"GET /api","service":"ecommerce-api","timestamp":"2024-12-22 16:24:27"}
+{"level":"info","message":"GET /api/health","service":"ecommerce-api","timestamp":"2024-12-22 16:24:33"}
+{"level":"info","message":"GET /api/auth/login","service":"ecommerce-api","timestamp":"2024-12-22 16:24:42"}
+{"level":"info","message":"Server running on port 5000","service":"ecommerce-api","timestamp":"2024-12-22 16:25:34"}
+{"level":"info","message":"POST /api/auth/login","service":"ecommerce-api","timestamp":"2024-12-22 16:25:44"}
+{"level":"info","message":"POST /api/auth/login","service":"ecommerce-api","timestamp":"2024-12-22 16:51:56"}
+{"level":"info","message":"POST /api/auth/login","service":"ecommerce-api","timestamp":"2024-12-22 16:52:33"}
+{"level":"info","message":"POST /api/auth/login","service":"ecommerce-api","timestamp":"2024-12-22 17:07:09"}
+{"level":"info","message":"POST /api/auth/register","service":"ecommerce-api","timestamp":"2024-12-22 17:07:37"}
+{"level":"info","message":"Server running on port 5000","service":"ecommerce-api","timestamp":"2024-12-22 17:13:49"}
+{"level":"info","message":"Server running on port 5000","service":"ecommerce-api","timestamp":"2024-12-22 17:14:22"}
+{"level":"info","message":"Server running on port 5000","service":"ecommerce-api","timestamp":"2024-12-22 17:14:49"}
+{"level":"info","message":"Server running on port 5000","service":"ecommerce-api","timestamp":"2024-12-22 17:15:12"}
+{"level":"info","message":"Server running on port 5000","service":"ecommerce-api","timestamp":"2024-12-22 17:15:13"}
+{"level":"info","message":"POST /api/auth/password-reset","service":"ecommerce-api","timestamp":"2024-12-22 17:17:11"}
+{"level":"info","message":"POST /api/auth/password-reset","service":"ecommerce-api","timestamp":"2024-12-22 17:17:33"}
+{"level":"info","message":"POST /api/auth/password-reset","service":"ecommerce-api","timestamp":"2024-12-22 17:18:27"}
+{"level":"info","message":"POST /api/auth/password-reset","service":"ecommerce-api","timestamp":"2024-12-22 17:18:36"}
+{"level":"info","message":"Server running on port 5000","service":"ecommerce-api","timestamp":"2024-12-22 17:20:11"}
+{"level":"info","message":"POST /api/auth/password-reset","service":"ecommerce-api","timestamp":"2024-12-22 17:20:14"}
+{"level":"info","message":"Server running on port 5000","service":"ecommerce-api","timestamp":"2024-12-22 17:21:41"}
+{"level":"info","message":"POST /api/auth/password-reset","service":"ecommerce-api","timestamp":"2024-12-22 17:22:13"}
+{"level":"info","message":"POST /api/auth/password-reset","service":"ecommerce-api","timestamp":"2024-12-22 17:27:32"}
+{"level":"info","message":"POST /api/auth/reset-password/ed7c1a553c8bebbbb42643513171aea49160d69a8b567f490cf3446742b5bd88","service":"ecommerce-api","timestamp":"2024-12-22 17:30:28"}
+{"level":"info","message":"POST /api/auth/reset-password/ed7c1a553c8bebbbb42643513171aea49160d69a8b567f490cf3446742b5bd88","service":"ecommerce-api","timestamp":"2024-12-22 17:30:36"}
+{"level":"info","message":"POST /api/auth/password-reset","service":"ecommerce-api","timestamp":"2024-12-22 17:36:45"}
+{"level":"info","message":"POST /api/auth/reset-password/0d80c4c39b1c08e0a3aee768bf166393b9228d20c8c7548a12800a0ef253a6cc","service":"ecommerce-api","timestamp":"2024-12-22 17:40:43"}
+{"level":"info","message":"GET /api/auth/reset-password/0d80c4c39b1c08e0a3aee768bf166393b9228d20c8c7548a12800a0ef253a6cc","service":"ecommerce-api","timestamp":"2024-12-22 17:40:56"}
+{"level":"info","message":"POST /api/auth/password-reset/0d80c4c39b1c08e0a3aee768bf166393b9228d20c8c7548a12800a0ef253a6cc","service":"ecommerce-api","timestamp":"2024-12-22 17:42:55"}
+{"level":"info","message":"POST /api/auth/login","service":"ecommerce-api","timestamp":"2024-12-22 17:43:12"}
+{"level":"info","message":"POST /api/auth/register","service":"ecommerce-api","timestamp":"2024-12-22 17:51:28"}
+{"level":"info","message":"POST /api/auth/register","service":"ecommerce-api","timestamp":"2024-12-22 17:55:53"}
+{"level":"info","message":"POST /api/auth/register","service":"ecommerce-api","timestamp":"2024-12-22 18:01:00"}
+{"level":"info","message":"POST /api/auth/register","service":"ecommerce-api","timestamp":"2024-12-22 18:03:16"}
+{"level":"info","message":"POST /api/auth/resend-verification","service":"ecommerce-api","timestamp":"2024-12-22 18:03:38"}
+{"level":"info","message":"POST /api/auth/verify-email/062d6baaf4b40d2603713da98ef2427b7c500569e7cfdfe40c88cefded2d6e43","service":"ecommerce-api","timestamp":"2024-12-22 18:07:14"}
+{"level":"info","message":"POST /api/auth/verify-email/062d6baaf4b40d2603713da98ef2427b7c500569e7cfdfe40c88cefded2d6e43","service":"ecommerce-api","timestamp":"2024-12-22 18:07:37"}
+{"level":"info","message":"POST /api/auth/verify-email/062d6baaf4b40d2603713da98ef2427b7c500569e7cfdfe40c88cefded2d6e43","service":"ecommerce-api","timestamp":"2024-12-22 18:07:47"}
+{"level":"info","message":"POST /api/auth/register","service":"ecommerce-api","timestamp":"2024-12-22 18:08:54"}
+{"level":"info","message":"POST /api/auth/verify-email/de435a5f85f977c8b09f2405e109ea11b61b68b638046aa47132f6a424cda2a6","service":"ecommerce-api","timestamp":"2024-12-22 18:09:06"}
+{"level":"info","message":"POST /api/auth/verify-email/de435a5f85f977c8b09f2405e109ea11b61b68b638046aa47132f6a424cda2a6","service":"ecommerce-api","timestamp":"2024-12-22 18:09:13"}
+{"level":"info","message":"Server running on port 5000","service":"ecommerce-api","timestamp":"2024-12-22 18:09:47"}
+{"level":"info","message":"POST /api/auth/verify-email/de435a5f85f977c8b09f2405e109ea11b61b68b638046aa47132f6a424cda2a6","service":"ecommerce-api","timestamp":"2024-12-22 18:10:10"}
