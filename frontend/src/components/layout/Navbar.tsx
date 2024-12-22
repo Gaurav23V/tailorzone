@@ -105,8 +105,7 @@ export default function Navbar() {
                     type="search"
                     placeholder="Search..."
                     className="w-full pr-8"
-                    autoFocus
-                  />
+                    autoFocus label={''}                  />
                 ) : (
                   <Button
                     variant="ghost"
