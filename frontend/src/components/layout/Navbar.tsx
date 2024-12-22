@@ -1,96 +1,145 @@
 'use client'
-import { useState } from 'react'
+
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { ShoppingCartIcon, UserIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { Search, Menu, X, User, ShoppingBag } from 'lucide-react'
 
 export default function Navbar() {
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const searchRef = useRef<HTMLDivElement>(null)
+  const cartItemCount = 0 // Replace with actual cart count
+
+  // Handle click outside search bar
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setIsSearchOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  const navLinks = [
+    { href: '/products', label: 'PRODUCTS' },
+    { href: '/categories', label: 'COLLECTION' },
+    { href: '/about', label: 'ABOUT' },
+    { href: '/contact', label: 'CONTACT' },
+  ]
 
   return (
-    <nav className="bg-white shadow-md">
+    <nav className="border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex-shrink-0 flex items-center">
-            <Link href="/" className="text-2xl font-bold text-dark-50">
-              Store
-            </Link>
-          </div>
+          <Link href="/" className="flex-shrink-0">
+            <span className="text-xl font-semibold">FOREVER</span>
+            <span className="text-rose-500">.</span>
+          </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden sm:flex sm:items-center sm:space-x-8">
-            <Link href="/products" className="text-dark-100 hover:text-dark-50">
-              Products
-            </Link>
-            <Link href="/categories" className="text-dark-100 hover:text-dark-50">
-              Categories
-            </Link>
-
-            {/* Icons */}
-            <div className="flex items-center space-x-4">
-              <Link href="/cart" className="text-dark-100 hover:text-dark-50">
-                <ShoppingCartIcon className="h-6 w-6" />
+          <div className="hidden md:flex items-center space-x-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="text-sm hover:text-gray-600 transition-colors relative group"
+              >
+                {link.label}
+                <span className="absolute inset-x-0 bottom-0 h-0.5 bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform" />
               </Link>
-              <Link href="/account" className="text-dark-100 hover:text-dark-50">
-                <UserIcon className="h-6 w-6" />
-              </Link>
-            </div>
+            ))}
           </div>
 
-          {/* Mobile menu button */}
-          <div className="sm:hidden flex items-center">
-            <button
+          {/* Right Section */}
+          <div className="flex items-center space-x-6">
+            {/* Search Bar */}
+            <div ref={searchRef} className="relative">
+              <div className={`flex items-center transition-all duration-300 ${
+                isSearchOpen ? 'w-64' : 'w-8'
+              }`}>
+                {isSearchOpen ? (
+                  <Input
+                    type="search"
+                    placeholder="Search..."
+                    className="w-full pr-8"
+                    autoFocus
+                  />
+                ) : (
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setIsSearchOpen(true)}
+                    className="hover:bg-transparent"
+                  >
+                    <Search className="h-5 w-5" />
+                    <span className="sr-only">Search</span>
+                  </Button>
+                )}
+              </div>
+            </div>
+
+            {/* User Account */}
+            <Button variant="ghost" size="icon" className="hover:bg-transparent">
+              <User className="h-5 w-5" />
+              <span className="sr-only">Account</span>
+            </Button>
+
+            {/* Shopping Cart */}
+            <Button variant="ghost" size="icon" className="hover:bg-transparent relative">
+              <ShoppingBag className="h-5 w-5" />
+              {cartItemCount > 0 && (
+                <span className="absolute -top-1 -right-1 h-4 w-4 text-xs bg-rose-500 text-white rounded-full flex items-center justify-center">
+                  {cartItemCount}
+                </span>
+              )}
+              <span className="sr-only">Cart</span>
+            </Button>
+
+            {/* Mobile Menu Button */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden hover:bg-transparent"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-dark-100 hover:text-dark-50"
             >
               {isMobileMenuOpen ? (
-                <XMarkIcon className="h-6 w-6" />
+                <X className="h-5 w-5" />
               ) : (
-                <Bars3Icon className="h-6 w-6" />
+                <Menu className="h-5 w-5" />
               )}
-            </button>
+              <span className="sr-only">Toggle menu</span>
+            </Button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        <div
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+            isMobileMenuOpen ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
+          <div className="py-4 border-t border-gray-200">
+            <div className="flex flex-col space-y-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="text-sm hover:text-gray-600 transition-colors px-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Mobile Navigation */}
-      <motion.div
-        initial={false}
-        animate={isMobileMenuOpen ? 'open' : 'closed'}
-        variants={{
-          open: { opacity: 1, height: 'auto' },
-          closed: { opacity: 0, height: 0 }
-        }}
-        className="sm:hidden overflow-hidden"
-      >
-        <div className="px-2 pt-2 pb-3 space-y-1">
-          <Link
-            href="/products"
-            className="block px-3 py-2 text-dark-100 hover:text-dark-50"
-          >
-            Products
-          </Link>
-          <Link
-            href="/categories"
-            className="block px-3 py-2 text-dark-100 hover:text-dark-50"
-          >
-            Categories
-          </Link>
-          <Link
-            href="/cart"
-            className="block px-3 py-2 text-dark-100 hover:text-dark-50"
-          >
-            Cart
-          </Link>
-          <Link
-            href="/account"
-            className="block px-3 py-2 text-dark-100 hover:text-dark-50"
-          >
-            Account
-          </Link>
-        </div>
-      </motion.div>
     </nav>
   )
 }
+

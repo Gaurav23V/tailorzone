@@ -62,3 +62,5 @@
 {"level":"info","message":"POST /api/auth/login","service":"ecommerce-api","timestamp":"2024-12-22 00:39:52"}
 {"level":"info","message":"POST /api/auth/resend-verification","service":"ecommerce-api","timestamp":"2024-12-22 00:41:58"}
 {"level":"info","message":"POST /api/auth/resend-verification","service":"ecommerce-api","timestamp":"2024-12-22 00:42:13"}
+{"level":"info","message":"Server running on port 5000","service":"ecommerce-api","timestamp":"2024-12-22 21:22:30"}
+{"level":"info","message":"POST /api/auth/login","service":"ecommerce-api","timestamp":"2024-12-22 21:24:15"}

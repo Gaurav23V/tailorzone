@@ -38,7 +38,6 @@ const categorySchema = new mongoose.Schema({
 });
 
 // Indexes for better query performance
-categorySchema.index({ slug: 1 });
 categorySchema.index({ parent: 1 });
 categorySchema.index({ isActive: 1 });
 categorySchema.index({ name: 'text', description: 'text'});

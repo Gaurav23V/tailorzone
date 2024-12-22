@@ -66,7 +66,6 @@ const productSchema = new mongoose.Schema({
 // Indexes for better query performance
 productSchema.index({ name: "text", description: "text" });
 productSchema.index({ category: 1, isActive: 1 }); // Category and status queries
-productSchema.index({ "inventory.sku": 1 }); // SKU lookups
 productSchema.index({ price: 1 }); // Price-based queries and sorting
 productSchema.index({ createdAt: -1 }); // Date-based queries and sorting
 productSchema.index({ "ratings.average": -1 }); // Rating-based queries and sorting
