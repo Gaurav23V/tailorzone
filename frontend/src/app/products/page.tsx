@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { ProductCard } from '@/components/ui/ProductCard';
 import { Pagination } from '@/components/ui/Pagination';
 import { Filters } from '@/components/ui/Filters';
@@ -27,11 +27,7 @@ export default function ProductsPage() {
     priceRange: {},
   });
 
-  useEffect(() => {
-    fetchProducts();
-  }, [currentPage, sortOption, filters]);
-
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     setIsLoading(true);
     setError(null);
 
@@ -67,7 +63,11 @@ export default function ProductsPage() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [currentPage, sortOption, filters]);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
 
   const handleFilterChange = (newFilters: FilterState) => {
     setFilters(newFilters);

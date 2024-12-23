@@ -39,7 +39,7 @@ export default function VerifyEmail() {
     };
 
     verifyEmail();
-  }, [params.token, router]);
+  }, [params.token, router, token]);
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4">

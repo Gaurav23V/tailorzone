@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button"
-import { CartSummary } from '@/types/cart'
 
 interface CartSummaryProps {
   subtotal: number;

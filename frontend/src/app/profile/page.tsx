@@ -5,21 +5,29 @@ import PersonalInformation from '@/components/profile/PersonalInformation';
 import AddressManagement from '@/components/profile/AddressManagement';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
+interface Address {
+  _id: string;
+  street: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  country: string;
+  isDefault: boolean;
+}
+
 interface UserProfile {
   _id: string;
   firstName: string;
   lastName: string;
   email: string;
   phone?: string;
-  addresses: Array<{
-    _id: string;
-    street: string;
-    city: string;
-    state: string;
-    postalCode: string;
-    country: string;
-    isDefault: boolean;
-  }>;
+  addresses: Address[];
+}
+
+interface UpdatedUserData {
+  firstName: string;
+  lastName: string;
+  phone?: string;
 }
 
 export default function ProfilePage() {
@@ -54,6 +62,15 @@ export default function ProfilePage() {
       fetchUserProfile();
     }
   }, [isAuthenticated]);
+
+  const handleProfileUpdate = (updatedData: UpdatedUserData) => {
+    if (!userProfile) return;
+
+    setUserProfile({
+      ...userProfile,
+      ...updatedData,
+    });
+  };
 
   if (!isAuthenticated) {
     return (
@@ -92,7 +109,7 @@ export default function ProfilePage() {
         <TabsContent value="personal">
           <PersonalInformation
             user={userProfile!}
-            onUpdate={(updatedProfile) => setUserProfile(updatedProfile)}
+            onUpdate={handleProfileUpdate}
           />
         </TabsContent>
 
@@ -101,12 +118,7 @@ export default function ProfilePage() {
             addresses={userProfile?.addresses || []}
             onUpdate={(updatedAddresses) =>
               setUserProfile((prev) =>
-                prev
-                  ? {
-                      ...prev,
-                      addresses: updatedAddresses,
-                    }
-                  : null
+                prev ? { ...prev, addresses: updatedAddresses } : null
               )
             }
           />

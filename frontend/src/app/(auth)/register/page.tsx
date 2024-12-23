@@ -1,12 +1,10 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
 export default function SignUp() {
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -43,7 +41,6 @@ export default function SignUp() {
         throw new Error(errorData.error || 'Registration failed');
       }
 
-      const { user, tokens } = await response.json();
       setUserEmail(data.email);
       setIsRegistered(true);
     } catch (err) {
@@ -88,13 +85,13 @@ export default function SignUp() {
               Verify Your Email —
             </h1>
             <p className="mt-4 text-gray-600">
-              We've sent a verification email to <strong>{userEmail}</strong>.
+              We&apos;ve sent a verification email to <strong>{userEmail}</strong>.
               Please check your inbox and click the verification link to
               complete your registration.
             </p>
           </div>
           <div className="text-center text-sm text-gray-600">
-            <p>Didn't receive the email?</p>
+            <p>Did&apos;nt receive the email?</p>
             <Button
               onClick={handleResendVerification}
               variant="link"
@@ -133,8 +130,7 @@ export default function SignUp() {
                 name="firstName"
                 placeholder="First Name"
                 className="w-full px-4 py-3 border border-gray-100 rounded-md focus:outline-none"
-                required
-              />
+                required label={''}              />
             </div>
             <div>
               <Input
@@ -142,8 +138,7 @@ export default function SignUp() {
                 name="lastName"
                 placeholder="Last Name"
                 className="w-full px-4 py-3 border border-gray-100 rounded-md focus:outline-none"
-                required
-              />
+                required label={''}              />
             </div>
           </div>
           <div>
@@ -152,8 +147,7 @@ export default function SignUp() {
               name="email"
               placeholder="Email"
               className="w-full px-4 py-3 border border-gray-100 rounded-md focus:outline-none"
-              required
-            />
+              required label={''}            />
           </div>
           <div>
             <Input
@@ -161,8 +155,7 @@ export default function SignUp() {
               name="password"
               placeholder="Password"
               className="w-full px-4 py-3 border border-gray-100 rounded-md focus:outline-none"
-              required
-            />
+              required label={''}            />
           </div>
           <div>
             <Input
@@ -170,8 +163,7 @@ export default function SignUp() {
               name="phone"
               placeholder="Phone Number"
               className="w-full px-4 py-3 border border-gray-100 rounded-md focus:outline-none"
-              required
-            />
+              required label={''}            />
           </div>
           <Button
             type="submit"

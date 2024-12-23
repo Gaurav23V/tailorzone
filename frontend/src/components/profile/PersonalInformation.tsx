@@ -4,14 +4,20 @@ import { useForm } from 'react-hook-form'
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 
+interface UpdatedUser {
+  firstName: string;
+  lastName: string;
+  phone?: string;
+}
+
 interface PersonalInformationProps {
   user: {
-    firstName: string
-    lastName: string
-    email: string
-    phone?: string
-  }
-  onUpdate: (updatedUser: any) => void
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone?: string;
+  };
+  onUpdate: (updatedUser: UpdatedUser) => void;
 }
 
 export default function PersonalInformation({ user, onUpdate }: PersonalInformationProps) {
@@ -27,7 +33,7 @@ export default function PersonalInformation({ user, onUpdate }: PersonalInformat
     }
   })
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: UpdatedUser) => {
     setIsLoading(true)
     setError(null)
     setSuccess(false)

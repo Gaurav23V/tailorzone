@@ -97,8 +97,7 @@ export default function ResetPasswordConfirm() {
               placeholder="New Password"
               className="w-full px-4 py-3 border border-gray-200 rounded-md focus:ring-2 focus:ring-gray-200 focus:border-gray-400"
               required
-              minLength={6}
-            />
+              minLength={6} label={''}            />
           </div>
           <div>
             <Input
@@ -107,8 +106,7 @@ export default function ResetPasswordConfirm() {
               placeholder="Confirm New Password"
               className="w-full px-4 py-3 border border-gray-200 rounded-md focus:ring-2 focus:ring-gray-200 focus:border-gray-400"
               required
-              minLength={6}
-            />
+              minLength={6} label={''}            />
           </div>
           <Button
             type="submit"

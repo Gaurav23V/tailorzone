@@ -32,13 +32,13 @@ export default function AboutPage() {
                 </p>
 
                 <p>
-                  Since Our Inception, We've Worked Tirelessly To Curate A Diverse Selection Of High-Quality Products That Cater To Every Taste And Preference. From Fashion And Beauty To Electronics And Home Essentials, We Offer An Extensive Collection Sourced From Trusted Brands And Suppliers.
+                  Since Our Inception, We&apos;ve Worked Tirelessly To Curate A Diverse Selection Of High-Quality Products That Cater To Every Taste And Preference. From Fashion And Beauty To Electronics And Home Essentials, We Offer An Extensive Collection Sourced From Trusted Brands And Suppliers.
                 </p>
 
                 <div className="pt-4">
                   <h2 className="text-lg font-medium text-black mb-4">Our Mission</h2>
                   <p>
-                    Our Mission At Forever Is To Empower Customers With Choice, Convenience, And Confidence. We're Dedicated To Providing A Seamless Shopping Experience That Exceeds Expectations, From Browsing And Ordering To Delivery And Beyond.
+                    Our Mission At Forever Is To Empower Customers With Choice, Convenience, And Confidence. We&apos;re Dedicated To Providing A Seamless Shopping Experience That Exceeds Expectations, From Browsing And Ordering To Delivery And Beyond.
                   </p>
                 </div>
               </div>

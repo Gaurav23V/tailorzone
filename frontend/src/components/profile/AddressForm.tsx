@@ -1,19 +1,22 @@
 'use client'
+
 import { useForm } from 'react-hook-form'
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 
+interface Address {
+  street: string
+  city: string
+  state: string
+  postalCode: string
+  country: string
+  isDefault: boolean
+}
+
 interface AddressFormProps {
-  address?: {
-    street: string
-    city: string
-    state: string
-    postalCode: string
-    country: string
-    isDefault: boolean
-  }
-  onSubmit: (data: any) => Promise<void>
+  address?: Address
+  onSubmit: (data: Address) => Promise<void>
   onCancel: () => void
   isLoading: boolean
 }
@@ -24,7 +27,7 @@ export default function AddressForm({
   onCancel,
   isLoading
 }: AddressFormProps) {
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const { register, handleSubmit, formState: { errors } } = useForm<Address>({
     defaultValues: address || {
       street: '',
       city: '',

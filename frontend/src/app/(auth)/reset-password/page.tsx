@@ -51,7 +51,7 @@ export default function ResetPassword() {
               Check Your Email —
             </h1>
             <p className="mt-4 text-gray-600">
-              If an account exists with that email, we've sent a password reset
+              If an account exists with that email, we&apos;ve sent a password reset
               link.
             </p>
           </div>
@@ -88,8 +88,7 @@ export default function ResetPassword() {
               name="email"
               placeholder="Email"
               className="w-full px-4 py-3 border border-gray-200 rounded-md focus:ring-2 focus:ring-gray-200 focus:border-gray-400"
-              required
-            />
+              required label={''}            />
           </div>
           <Button
             type="submit"

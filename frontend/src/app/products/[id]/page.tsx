@@ -81,7 +81,7 @@ export default function ProductPage() {
     };
 
     fetchProduct();
-  }, [params.id]);
+  }, [params.id, id]);
 
   const handleAddToCart = async () => {
     if (!product) return;
@@ -90,10 +90,20 @@ export default function ProductPage() {
       await addToCart({
         productId: product._id,
         quantity: 1,
+        product: {
+          _id: product._id,
+          name: product.name,
+          price: product.price,
+          salePrice: product.salePrice,
+          images: product.images,
+          inventory: {
+            quantity: product.inventory.quantity
+          }
+        }
       });
       toast.success('Added to cart successfully');
-    } catch (error) {
-      toast.error('Failed to add to cart');
+    } catch (err) {
+      toast.error(`Failed to add to cart: ${err instanceof Error ? err.message : 'Unknown error'}`);
     }
   };
 

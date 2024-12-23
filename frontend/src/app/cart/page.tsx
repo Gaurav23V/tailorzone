@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect } from 'react';
 import { CartItemCard } from '@/components/ui/cart-items';
 import { CartSummaryCard } from '@/components/ui/cart-summary';
 import { useCart } from '@/hooks/useCart';
 import { Loader2 } from 'lucide-react';
+import Link from 'next/link';
 import { toast } from 'sonner';
 
 export default function CartPage() {
@@ -13,7 +13,7 @@ export default function CartPage() {
   // Calculate totals
   const subtotal = state.items.reduce((sum, item) => {
     const price = item.product.salePrice || item.product.price;
-    return sum + (price * item.quantity);
+    return sum + price * item.quantity;
   }, 0);
 
   const shippingFee = subtotal > 500 ? 0 : 50; // Free shipping over ₹500
@@ -23,8 +23,10 @@ export default function CartPage() {
     try {
       await updateQuantity(productId, quantity);
       toast.success('Cart updated successfully');
-    } catch (error) {
-      toast.error('Failed to update cart');
+    } catch (err) {
+      toast.error(
+        `Failed to update cart: ${err instanceof Error ? err.message : 'Unknown error'}`
+      );
     }
   };
 
@@ -32,8 +34,10 @@ export default function CartPage() {
     try {
       await removeFromCart(productId);
       toast.success('Item removed from cart');
-    } catch (error) {
-      toast.error('Failed to remove item from cart');
+    } catch (err) {
+      toast.error(
+        `Failed to remove item from cart: ${err instanceof Error ? err.message : 'Unknown error'}`
+      );
     }
   };
 
@@ -54,18 +58,15 @@ export default function CartPage() {
       <div className="lg:grid lg:grid-cols-12 lg:gap-x-12 lg:items-start">
         <div className="lg:col-span-7">
           <h1 className="text-2xl font-medium text-gray-900">YOUR CART —</h1>
-          {state.error && (
-            <p className="mt-4 text-red-600">{state.error}</p>
-          )}
+          {state.error && <p className="mt-4 text-red-600">{state.error}</p>}
           {state.items.length === 0 ? (
             <div className="mt-6 text-center">
               <p className="text-gray-500">Your cart is empty</p>
-              <a
-                href="/products"
-                className="mt-4 inline-block text-sm text-blue-600 hover:text-blue-500"
-              >
-                Continue Shopping →
-              </a>
+              <Link href="/products">
+                <a className="mt-4 inline-block text-sm text-blue-600 hover:text-blue-500">
+                  Continue Shopping →
+                </a>
+              </Link>
             </div>
           ) : (
             <div className="mt-6 divide-y divide-gray-200">
@@ -75,7 +76,10 @@ export default function CartPage() {
                   id={item.product._id}
                   name={item.product.name}
                   price={item.product.salePrice || item.product.price}
-                  image={item.product.images.find(img => img.isDefault)?.url || item.product.images[0].url}
+                  image={
+                    item.product.images.find((img) => img.isDefault)?.url ||
+                    item.product.images[0].url
+                  }
                   quantity={item.quantity}
                   maxQuantity={item.product.inventory.quantity}
                   onQuantityChange={handleQuantityChange}
