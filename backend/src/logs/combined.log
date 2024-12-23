@@ -486,3 +486,7 @@
 {"level":"info","message":"GET /api/products?page=1&limit=8&sort=-createdAt","service":"ecommerce-api","timestamp":"2024-12-23 07:39:19"}
 {"level":"info","message":"GET /api/products?sort=-createdAt&limit=8","service":"ecommerce-api","timestamp":"2024-12-23 07:39:24"}
 {"level":"info","message":"GET /api/products?sort=-createdAt&limit=8","service":"ecommerce-api","timestamp":"2024-12-23 07:39:24"}
+{"level":"info","message":"GET /api/cart","service":"ecommerce-api","timestamp":"2024-12-23 07:47:39"}
+{"level":"info","message":"GET /api/products?sort=-createdAt&limit=8","service":"ecommerce-api","timestamp":"2024-12-23 07:53:18"}
+{"level":"info","message":"GET /api/products?sort=-createdAt&limit=8","service":"ecommerce-api","timestamp":"2024-12-23 07:53:18"}
+{"level":"info","message":"Server running on port 5000","service":"ecommerce-api","timestamp":"2024-12-23 07:54:17"}

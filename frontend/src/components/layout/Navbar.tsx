@@ -73,7 +73,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
-            <span className="text-xl font-semibold">FOREVER</span>
+            <span className="text-xl font-semibold">MYTAILORZONE</span>
             <span className="text-rose-500">.</span>
           </Link>
 
