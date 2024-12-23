@@ -39,7 +39,7 @@ export default function PersonalInformation({ user, onUpdate }: PersonalInformat
     setSuccess(false)
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/auth/profile', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/profile`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

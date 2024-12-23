@@ -16,7 +16,7 @@ export default function VerifyEmail() {
     const verifyEmail = async () => {
       try {
         const response = await fetch(
-          `http://127.0.0.1:5000/api/auth/verify-email/${token}`,
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/verify-email/${token}`,
           {
             method: 'POST',
           }

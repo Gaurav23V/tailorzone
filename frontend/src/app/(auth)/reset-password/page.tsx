@@ -19,7 +19,7 @@ export default function ResetPassword() {
 
     try {
       const response = await fetch(
-        'http://127.0.0.1:5000/api/auth/password-reset',
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/password-reset`,
         {
           method: 'POST',
           headers: {

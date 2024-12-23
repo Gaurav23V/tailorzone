@@ -57,7 +57,7 @@ export default function ProductPage() {
     const fetchProduct = async () => {
       try {
         const response = await fetch(
-          `http://127.0.0.1:5000/api/products/${id}`
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products/${id}`
         );
         if (!response.ok) throw new Error('Failed to fetch product');
         const data = await response.json();
@@ -65,7 +65,7 @@ export default function ProductPage() {
 
         // Fetch related products from same category
         const relatedResponse = await fetch(
-          `http://127.0.0.1:5000/api/products?category=${data.category._id}&limit=4`
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?category=${data.category._id}&limit=4`
         );
         if (relatedResponse.ok) {
           const relatedData = await relatedResponse.json();

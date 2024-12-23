@@ -31,7 +31,7 @@ export default function AddressManagement({ addresses: initialAddresses, onUpdat
     setError(null)
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/auth/profile/address', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/profile/address`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ export default function AddressManagement({ addresses: initialAddresses, onUpdat
     setError(null)
 
     try {
-      const response = await fetch(`http://127.0.0.1:5000/api/auth/profile/address/${addressId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/profile/address/${addressId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -93,7 +93,7 @@ export default function AddressManagement({ addresses: initialAddresses, onUpdat
     setError(null)
 
     try {
-      const response = await fetch(`http://127.0.0.1:5000/api/auth/profile/address/${addressId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/profile/address/${addressId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('accessToken')}`

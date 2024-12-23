@@ -30,7 +30,7 @@ export default function HomePage() {
       try {
         setIsLoading(true);
         // Fetch latest products (sorted by createdAt in descending order)
-        const response = await fetch('http://127.0.0.1:5000/api/products?sort=-createdAt&limit=8');
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?sort=-createdAt&limit=8`);
         if (!response.ok) throw new Error('Failed to fetch products');
 
         const data = await response.json();

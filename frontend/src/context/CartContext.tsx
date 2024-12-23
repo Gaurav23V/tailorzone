@@ -133,7 +133,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     const fetchCart = async () => {
       try {
         dispatch({ type: 'SET_LOADING', payload: true });
-        const response = await fetch('http://127.0.0.1:5000/api/cart', {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/cart`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
           },
@@ -176,7 +176,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const addToCart = async (item: { productId: string; quantity: number }) => {
     try {
       dispatch({ type: 'SET_LOADING', payload: true });
-      const response = await fetch('http://127.0.0.1:5000/api/cart/items', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/cart/items`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -207,7 +207,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
       // Make API call to remove item from cart
       const response = await fetch(
-        `http://127.0.0.1:5000/api/cart/items/${productId}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/cart/items/${productId}`,
         {
           method: 'DELETE',
           headers: {
@@ -235,7 +235,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     try {
       dispatch({ type: 'SET_LOADING', payload: true });
 
-      const response = await fetch(`http://127.0.0.1:5000/api/cart/items/${productId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/cart/items/${productId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -267,7 +267,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       dispatch({ type: 'CLEAR_ERROR' });
 
       // Make API call to clear cart
-      const response = await fetch('http://127.0.0.1:5000/api/cart', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/cart`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${localStorage.getItem('accessToken')}`,

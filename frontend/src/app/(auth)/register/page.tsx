@@ -28,7 +28,8 @@ export default function SignUp() {
     };
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/auth/register', {
+      console.log('Backend URL:', process.env.NEXT_PUBLIC_BACKEND_URL);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -55,7 +56,7 @@ export default function SignUp() {
     setResendLoading(true);
     setResendError(null);
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/auth/resend-verification', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/resend-verification`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

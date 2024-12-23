@@ -31,7 +31,7 @@ export default function ResetPasswordConfirm() {
 
     try {
       const response = await fetch(
-        `http://127.0.0.1:5000/api/auth/password-reset/${token}`, // Use destructured token
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/password-reset/${token}`, // Use destructured token
         {
           method: 'POST',
           headers: {
