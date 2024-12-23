@@ -72,7 +72,9 @@ export default function Login() {
               name="email"
               placeholder="Email"
               className="w-full px-4 py-3 border border-gray-200 rounded-md focus:ring-2 focus:ring-gray-200 focus:border-gray-400"
-              required label={''}            />
+              required
+              label={''}
+            />
           </div>
           <div>
             <Input
@@ -80,7 +82,9 @@ export default function Login() {
               name="password"
               placeholder="Password"
               className="w-full px-4 py-3 border border-gray-200 rounded-md focus:ring-2 focus:ring-gray-200 focus:border-gray-400"
-              required label={''}            />
+              required
+              label={''}
+            />
           </div>
           <div className="flex items-center justify-between text-sm">
             <Link
